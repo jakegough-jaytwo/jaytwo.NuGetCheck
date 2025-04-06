@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaytwo.NuGetCheck", "src\jaytwo.NuGetCheck\jaytwo.NuGetCheck.csproj", "{D59CB640-551E-4B24-937E-24FF9F76DBBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaytwo.NuGetCheck.GlobalTool", "src\jaytwo.NuGetCheck.GlobalTool\jaytwo.NuGetCheck.GlobalTool.csproj", "{D59CB640-551E-4B24-937E-24FF9F76DBBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{37C6A4DB-6822-4CD8-87C0-EC41E074E683}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{44442101-F2E3-4345-8D51-143615C2FF2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaytwo.NuGetCheck.Tests", "test\jaytwo.NuGetCheck.Tests\jaytwo.NuGetCheck.Tests.csproj", "{AC85C7C9-3E07-40D3-93CE-C3E647255E7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaytwo.NuGetCheck.GlobalTool.Tests", "test\jaytwo.NuGetCheck.GlobalTool.Tests\jaytwo.NuGetCheck.GlobalTool.Tests.csproj", "{AC85C7C9-3E07-40D3-93CE-C3E647255E7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{615C1977-8BD3-4BC4-861E-528E5FB62EA9}"
 	ProjectSection(SolutionItems) = preProject

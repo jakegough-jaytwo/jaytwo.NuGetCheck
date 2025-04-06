@@ -43,7 +43,7 @@ If there is an exception, the process exits with code `1` (fail).
 
 ### Opposite Day Exit Codes
 
-Since the main use case for this tool is to fail CI if I forgot to bump the version, I want to fail when there _are_ versions found.  Just use the option `--opposite-day`.
+Since the main use case for this tool is to fail CI if I forgot to bump the version, I want to fail when there _are_ versions found.  Just use the option `--fail-on-match`.
 
 If there are no results, the process exits with code `0` (success).
 
@@ -53,7 +53,7 @@ If there is an exception, the process exits with code `1` (fail).
 
 ```bash
 # This will fail if `xunit` has any published versions greater than or equal to `2.0.0` and less than `2.1.0`:
-nugetcheck xunit -gte 2.0.0 --same-minor --opposite-day
+nugetcheck xunit -gte 2.0.0 --same-minor --fail-on-match
 ```
 
 ## Docker Usage

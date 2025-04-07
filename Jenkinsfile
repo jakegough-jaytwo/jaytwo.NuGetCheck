@@ -31,11 +31,11 @@ helper.run('linux && make && docker', {
                         sh "make pack-beta"
                     }
                 }
+                stage ('NuGet Check Version') {
+                    sh "make nuget-check"
+                }
                 if(env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop'){
                     withCredentials([string(credentialsId: nuGetCredentialsId, variable: "NUGET_API_KEY")]) {
-                        stage ('NuGet Check Version') {
-                            sh "make nuget-check"
-                        }
                         stage ('NuGet Push') {
                             sh "make nuget-push"
                         }

@@ -1,17 +1,20 @@
 TOPDIR=$(shell pwd)
+
 BUILD_SLN=./jaytwo.NuGetCheck.sln
 BUILD_DIR=./src/jaytwo.NuGetCheck.GlobalTool
 BUILD_TEST_DIR=./test/jaytwo.NuGetCheck.GlobalTool.Tests
 BUILD_TRX_FILENAME=jaytwo.NuGetCheck.GlobalTool.Tests.trx
 BUILD_PACKED_DIR=${TOPDIR}/out/packed
-DOCKER_TAG?=jaytwo_nugetcheck
+
+NUGET_SOURCE_URL?=https://api.nuget.org/v3/index.json
+NUGET_API_KEY?=__missing_api_key__
+
+DOCKER_TAG?=$(call getDockerTag,$(BUILD_SLN))
 DOCKER_BASE_TAG?=${DOCKER_TAG}__base
 DOCKER_BUILDER_TAG?=${DOCKER_TAG}__builder
 DOCKER_BUILDER_CONTAINER?=${DOCKER_BUILDER_TAG}
 DOCKER_RUN_MAKE_TARGETS?=run
-NUGET_SOURCE_URL?=https://api.nuget.org/v3/index.json
-NUGET_API_KEY?=__missing_api_key__
-TIMESTAMP?=$(shell date +'%Y%m%d%H%M%S')
+TIMESTAMP?=$(call getTimestamp)
 
 default: clean build
 
@@ -57,12 +60,12 @@ pack-beta: PACK_ARG=--version-suffix beta-${TIMESTAMP}
 pack-beta: pack
 
 nuget-check:
-	PACKED_NUPKG_FILE="$(shell ls -1 ${BUILD_PACKED_DIR}/*.nupkg)"; \
+	PACKED_NUPKG_FILE="$(call getNupkg)"; \
 	nugetcheck "$$PACKED_NUPKG_FILE" -gte "$$PACKED_NUPKG_FILE" --same-major --fail-on-match && echo "Ready to push!" || "Failed NuGetCheck; cannot push."
 
 nuget-push: nuget-check
 nuget-push:
-	PACKED_NUPKG_FILE="$(shell ls -1 ${BUILD_PACKED_DIR}/*.nupkg)"; \
+	PACKED_NUPKG_FILE="$(call getNupkg)"; \
 	dotnet nuget push "$$PACKED_NUPKG_FILE" --source "${NUGET_SOURCE_URL}" --api-key "$$NUGET_API_KEY"
 
 docker-builder:
@@ -96,3 +99,15 @@ docker-clean:
 	# not removing image DOCKER_BASE_TAG since we want the layer cache to stick around (hopefully they will be cleaned up on the scheduled job)
 	docker rmi ${DOCKER_BUILDER_TAG} && echo "Image removed: ${DOCKER_BUILDER_TAG}" || echo "Nothing to clean up for: ${DOCKER_BUILDER_TAG}"
 	docker rmi ${DOCKER_TAG} && echo "Image removed: ${DOCKER_TAG}" || echo "Nothing to clean up for: ${DOCKER_TAG}"
+
+define getDockerTag
+$(shell echo '$(basename $(1))' | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/_/g' | sed 's/^_*//')
+endef
+
+define getTimestamp
+$(shell date +'%Y%m%d%H%M%S')
+endef
+
+define getNupkg
+$(shell ls -1 ${BUILD_PACKED_DIR}/*.nupkg)
+endef

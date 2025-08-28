@@ -1,4 +1,4 @@
 library 'JenkinsBuilderLibrary'
 
-helper.loadNuGetProjectDefaults('jaytwo.NuGetCheck')
-helper.runNuGetProject()
+nugetProject.build(
+    gitHubRepository: 'jaytwo.NuGetCheck')

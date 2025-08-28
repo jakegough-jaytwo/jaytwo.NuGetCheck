@@ -1,5 +1,5 @@
 BUILD_SLN=./jaytwo.NuGetCheck.sln
-BUILD_DIRS=./src/jaytwo.NuGetCheck
+BUILD_DIRS=./src/jaytwo.NuGetCheck.GlobalTool
 BUILD_TEST_DIRS=./test/jaytwo.NuGetCheck.GlobalTool.Tests
 ENABLE_COMPOSE_NETWORK=false
 

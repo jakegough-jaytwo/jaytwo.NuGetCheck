@@ -1,6 +1,6 @@
 BUILD_SLN=./jaytwo.NuGetCheck.sln
 BUILD_DIRS=./src/jaytwo.NuGetCheck
-BUILD_TEST_DIRS=./test/jaytwo.NuGetCheck.Tests
+BUILD_TEST_DIRS=./test/jaytwo.NuGetCheck.GlobalTool.Tests
 ENABLE_COMPOSE_NETWORK=false
 
 NUGET_SOURCE_URL?=https://api.nuget.org/v3/index.json

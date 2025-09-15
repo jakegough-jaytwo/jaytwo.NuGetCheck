@@ -6,27 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);DOTNET8_0</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);DOTNET6_0</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <DefineConstants>$(DefineConstants);NETCORE</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2</DefineConstants>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_1</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net462'">
-    <DefineConstants>$(DefineConstants);NETFRAMEWORK</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
   </ItemGroup>
